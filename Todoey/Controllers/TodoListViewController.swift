@@ -142,7 +142,7 @@ class TodoListViewController: UITableViewController {
         if let data = try? Data(contentsOf: dataFilePath!) {
             let decoder = PropertyListDecoder()
             do{
-                itemArray = decoder.decode([Item].self, from: data)
+                itemArray = try decoder.decode([Item].self, from: data)
             } catch {
                 print("Error decoding item array, \(error)")
             }
