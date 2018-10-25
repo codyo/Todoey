@@ -19,25 +19,6 @@ class TodoListViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-        
-        
-//        let newItem = Item()
-//        newItem.title = "Find Mike"
-//        itemArray.append(newItem)
-//        
-//        let newItem2 = Item()
-//        newItem2.title = "Buy Eggos"
-//        itemArray.append(newItem2)
-//        
-//        let newItem3 = Item()
-//        newItem3.title = "Destroy Demogorgon"
-//        itemArray.append(newItem3)
-        
-//        if let items = defaults.array(forKey: "TodoListArray") as? [Item] {
-//            itemArray = items
-//        }
-        
         loadItems()
     }
     
@@ -56,12 +37,6 @@ class TodoListViewController: UITableViewController {
         
         cell.accessoryType = item.done ? .checkmark : .none
         
-//        if item.done == true {
-//            cell.accessoryType = .checkmark
-//        } else {
-//            cell.accessoryType = .none
-//        }
-        
         return cell
     }
     
@@ -71,20 +46,6 @@ class TodoListViewController: UITableViewController {
 //        print(String(indexPath.row) + String(" - \(itemArray[indexPath.row])"))
         
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
-        
-//        if itemArray[indexPath.row].done == false {
-//            itemArray[indexPath.row].done = true
-//        } else {
-//            itemArray[indexPath.row].done = false
-//        }
-        
-//        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-//        } else {
-//            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-//        }
-        
-//        tableView.reloadData()
         
         saveItems()
         
@@ -106,8 +67,6 @@ class TodoListViewController: UITableViewController {
             
             //what will happen once the user clicks the "add item" button on our UI alert
             self.itemArray.append(newItem)
-            
-//            self.defaults.set(self.itemArray, forKey: "TodoListArray")
             
             self.saveItems()
             
