@@ -21,17 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
         
-        print(Realm.Configuration.defaultConfiguration.fileURL)
-        
-        let data = Data()
-        data.name = "Cody"
-        data.age = 45
         
         do {
             let realm = try Realm()
-            try realm.write {
-                realm.add(data)
-            }
         } catch {
             print("Error initializing new realm, \(error)")
         }
