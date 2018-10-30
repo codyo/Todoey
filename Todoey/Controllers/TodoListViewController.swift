@@ -62,6 +62,7 @@ class TodoListViewController: UITableViewController {
             do {
                 try realm.write{
                     item.done = !item.done
+//                    realm.delete(item)
                 }
             } catch {
                 print("Error saving done status, \(error)")
@@ -70,12 +71,6 @@ class TodoListViewController: UITableViewController {
         
         tableView.reloadData()
         
-//        context.delete(IndexArray[indexPath.row])
-//        itemArray.remove(at: indexPath.row)
-        
-//        todoItems[indexPath.row].done = !todoItems[indexPath.row].done
-//
-//        saveItems()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
