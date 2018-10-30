@@ -13,9 +13,7 @@ class CatagoryViewController: UITableViewController {
     
     let realm = try! Realm()
     
-    var catagories = [Catagory]()
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var catagories:Results<Catagory>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +26,13 @@ class CatagoryViewController: UITableViewController {
     //MARK: - TableView Datasource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return catagories.count
+        return catagories?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CatagoryCell", for: indexPath)
         
-        cell.textLabel?.text = catagories[indexPath.row].name
+        cell.textLabel?.text = catagories?[indexPath.row].name ?? "No Catagories added yet"
         
         return cell
     }
@@ -50,7 +48,7 @@ class CatagoryViewController: UITableViewController {
         let destinationVC = segue.destination as! TodoListViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedCatagory = catagories[indexPath.row]
+            destinationVC.selectedCatagory = catagories?[indexPath.row]
         }
     }
     
@@ -70,15 +68,9 @@ class CatagoryViewController: UITableViewController {
     }
     
     func loadCatagories(){
-//        let request:NSFetchRequest<Catagory> = Catagory.fetchRequest()
-//        
-//        do {
-//            catagories = try context.fetch(request)
-//        } catch {
-//            print("Error loading catagories \(error)")
-//        }
-//        
-//        tableView.reloadData()
+        catagories = realm.objects(Catagory.self)
+        
+        tableView.reloadData()
     }
     
 
@@ -91,8 +83,6 @@ class CatagoryViewController: UITableViewController {
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             let newCatagory = Catagory()
             newCatagory.name = textField.text!
-            
-            self.catagories.append(newCatagory)
             
             self.save(catagory: newCatagory)
         }
