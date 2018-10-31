@@ -10,5 +10,6 @@ import RealmSwift
 
 class Catagory:Object {
     @objc dynamic var name: String = ""
+    @objc dynamic var backgroundColor : String = "#FFFFFF"
     let items = List<Item>()
 }
